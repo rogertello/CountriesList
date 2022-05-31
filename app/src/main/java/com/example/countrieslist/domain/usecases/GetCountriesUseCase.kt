@@ -14,8 +14,10 @@ class GetCountriesUseCase @Inject constructor(
         val countries = repository.getAllCountriesFromApi()
 
         return if(countries.isNotEmpty()){
-            repository.clearCountries()
-            repository.insertCountries(countries.map{it.toDatabase()})
+           run{
+               repository.clearCountries()
+               repository.insertCountries(countries.map{it.toDatabase()})
+           }
             //Log.d(TAG, "Get Uses Case invoke: ${countries}")
             countries
         }else{

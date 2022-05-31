@@ -11,8 +11,8 @@ class GetSearchedCountriesUseCase @Inject constructor(
 ){
     suspend operator fun invoke(stringRequired:String): List<Country> {
         val countries = repository.getSearchedCountriesFromRoom(stringRequired)
-        Log.d(TAG, "invoke search repository: $stringRequired")
-        Log.d(TAG, "invoke search repository: $countries")
+       // Log.d(TAG, "invoke search repository: $stringRequired")
+      //  Log.d(TAG, "invoke search repository: $countries")
         return if(countries.isNotEmpty()){
             countries
         }else{

@@ -36,7 +36,7 @@ class CountriesRepository @Inject constructor(
 
     suspend fun getSearchedCountriesFromRoom(stingSearched:String):List<Country>{
         val response : List<CountryEntity> = countryDao.getSearchedCountries(stingSearched)
-        Log.d(TAG, "getSearchedCountriesFromRoom: $response")
+       // Log.d(TAG, "getSearchedCountriesFromRoom: $response")
         return response.map { it.toDomain() }
     }
 }

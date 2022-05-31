@@ -53,10 +53,10 @@ private val countriesViewModel: CountriesViewModel by viewModels()
     }
 
     override fun onQueryTextSubmit(p0: String?): Boolean {
-        Log.d(TAG, "onQueryTextSubmit: detonado")
+      //  Log.d(TAG, "onQueryTextSubmit: detonado")
         if(!p0.isNullOrEmpty())
         {
-            Log.d(TAG, "onQueryTextSubmit: $p0")
+          //  Log.d(TAG, "onQueryTextSubmit: $p0")
             countriesViewModel.onSearch(p0)
         }
         return true

@@ -13,7 +13,7 @@ private const val TAG = "CountriesAdapter"
 class CountriesAdapter(val countries : List<Country>) :RecyclerView.Adapter<CountriesViewHolder> (){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountriesViewHolder {
         val layoutInflater=LayoutInflater.from(parent.context)
-        Log.d(TAG, "onCreateViewHolder list countries: ${countries}")
+       // Log.d(TAG, "onCreateViewHolder list countries: ${countries}")
         return CountriesViewHolder(layoutInflater.inflate(R.layout.item_country, parent,false))
 
     }

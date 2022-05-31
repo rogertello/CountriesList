@@ -47,12 +47,12 @@ class CountriesViewModel @Inject constructor (
     fun onSearch(queryValue:String){
         // Before start coroutine
        // jobScope?.cancel()
-        Log.d(TAG, "onSearchViewModel: $queryValue")
+       // Log.d(TAG, "onSearchViewModel: $queryValue")
       //  jobScope =
             viewModelScope.launch {
             isLoading.postValue(true)
             val result = getSearchedCountriesUseCase(queryValue)
-            Log.d(TAG, "onSearchViewModel: $result")
+           // Log.d(TAG, "onSearchViewModel: $result")
             if(!result.isNullOrEmpty()){
                 countriesModel.postValue(result)
                 isLoading.postValue(false)
