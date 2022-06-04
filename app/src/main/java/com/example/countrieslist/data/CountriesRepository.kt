@@ -8,6 +8,7 @@ import com.example.countrieslist.data.network.CountryService
 import com.example.countrieslist.domain.model.Country
 import javax.inject.Inject
 import com.example.countrieslist.domain.model.toDomain
+import java.lang.Exception
 
 private const val TAG = "CountriesRepository"
 class CountriesRepository @Inject constructor(
@@ -15,9 +16,13 @@ class CountriesRepository @Inject constructor(
     ,private val countryDao: ICountryDao
 ){
     suspend fun getAllCountriesFromApi(): List<Country>{
+        try{
         val response : List<CountryModel> = api.getCountries()
         return response.map{
             it.toDomain()
+        }}
+        catch(ex:Exception){
+            return emptyList()
         }
     }
 
