@@ -1,6 +1,7 @@
 package com.example.countrieslist.domain
 
 import com.example.countrieslist.data.CountriesRepository
+import com.example.countrieslist.domain.model.Country
 import com.example.countrieslist.domain.usecases.GetCountriesUseCase
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -32,6 +33,22 @@ class GetCountriesUseCaseTest {
         getCountriesUseCase()
         //then
         coVerify (exactly = 1){ countriesRepository.getAllCountriesFromRoom() }
+    }
+
+    @Test
+    fun `when the api returns something then gets the value from api`() = runBlocking {
+        //given
+        var myList = listOf(
+            Country("Mexico", "NA", "MEX", "Mexico DF", ""),
+            Country("United States", "NA", "USA", "Washington DC", "")
+        )
+        coEvery { countriesRepository.getAllCountriesFromApi() } returns myList
+        //when
+        val myResponse = getCountriesUseCase()
+        //then
+        coVerify (exactly = 1){ countriesRepository.clearCountries() }
+        coVerify (exactly = 1){ countriesRepository.insertCountries(any()) }
+        coVerify (exactly = 0){ countriesRepository.getAllCountriesFromRoom() }
     }
 
 
