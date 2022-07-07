@@ -28,7 +28,7 @@ private val countriesViewModel: CountriesViewModel by viewModels()
         setContentView(binding.root)
         binding.svCountries.setOnQueryTextListener(this)
 
-        countriesViewModel.onCreate()//initializing the viewmodel
+      //  countriesViewModel.onCreate()//initializing the viewmodel
 
         //begin binding observers-viewmodel
         countriesViewModel.isLoading.observe(this, Observer{

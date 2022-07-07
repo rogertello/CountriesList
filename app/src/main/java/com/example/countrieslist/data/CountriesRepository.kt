@@ -19,13 +19,14 @@ class CountriesRepository @Inject constructor(
         try{
         val response : List<CountryModel> = api.getCountries()
         return response.map{
+            Log.d(TAG, "getAllCountriesFromApi: $it")
             it.toDomain()
         }}
         catch(ex:Exception){
             return emptyList()
         }
     }
-
+//Data for room
     suspend fun insertCountries(countries:List<CountryEntity>){
         countryDao.insertAll(countries)
     }

@@ -14,51 +14,54 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CountriesViewModel @Inject constructor (
+class CountriesViewModel @Inject constructor(
     private val getCountriesUseCase: GetCountriesUseCase,
     private val getSearchedCountriesUseCase: GetSearchedCountriesUseCase
-        ):ViewModel(){
+) : ViewModel() {
     private val TAG = "CountriesViewModel"
     val countriesModel = MutableLiveData<List<Country>>()
     val isLoading = MutableLiveData<Boolean>()
 
     private var jobScope: Job? = null
 
-    fun onCreate(){
+    init{
+        onCreate()
+    }
+    fun onCreate() {
         // Before start coroutine
-      //  jobScope?.cancel()
+        //  jobScope?.cancel()
 
         //jobScope =
-            viewModelScope.launch {
+        viewModelScope.launch {
             isLoading.postValue(true)
             val result = getCountriesUseCase()
-            if(!result.isNullOrEmpty()){
+            if (!result.isNullOrEmpty()) {
                 countriesModel.postValue(result)
                 isLoading.postValue(false)
-               // Log.d(TAG, "onCreate result: ${result}")
+                // Log.d(TAG, "onCreate result: ${result}")
                 //Log.d(TAG, "onCreate countriesModel: ${countriesModel.value}")
-            }else{
+            } else {
                 Log.d(TAG, "onCreate: null result")
             }
         }
     }
 
 
-    fun onSearch(queryValue:String){
+    fun onSearch(queryValue: String) {
         // Before start coroutine
-       // jobScope?.cancel()
-       // Log.d(TAG, "onSearchViewModel: $queryValue")
-      //  jobScope =
-            viewModelScope.launch {
+        // jobScope?.cancel()
+        // Log.d(TAG, "onSearchViewModel: $queryValue")
+        //  jobScope =
+        viewModelScope.launch {
             isLoading.postValue(true)
             val result = getSearchedCountriesUseCase(queryValue)
-           // Log.d(TAG, "onSearchViewModel: $result")
-            if(!result.isNullOrEmpty()){
+            // Log.d(TAG, "onSearchViewModel: $result")
+            if (!result.isNullOrEmpty()) {
                 countriesModel.postValue(result)
                 isLoading.postValue(false)
                 // Log.d(TAG, "onCreate result: ${result}")
                 //Log.d(TAG, "onCreate countriesModel: ${countriesModel.value}")
-            }else{
+            } else {
                 isLoading.postValue(false)
                 countriesModel.postValue(emptyList())
                 //Toast.makeText( coroutineContext, "", Toast.LENGTH_SHORT)
@@ -66,8 +69,6 @@ class CountriesViewModel @Inject constructor (
             }
         }
     }
-
-
 
 
 }

@@ -9,8 +9,16 @@ private const val TAG = "GetSearchedCountriesUse"
 class GetSearchedCountriesUseCase @Inject constructor(
     private val repository: CountriesRepository
 ){
+
     suspend operator fun invoke(stringRequired:String): List<Country> {
-        val countries = repository.getSearchedCountriesFromRoom(stringRequired)
+         lateinit var countries :List<Country>
+
+         if(stringRequired.isNotEmpty()) {
+             repository.getSearchedCountriesFromRoom(stringRequired)
+         }else {
+             repository.getAllCountriesFromRoom()
+         }
+
        // Log.d(TAG, "invoke search repository: $stringRequired")
       //  Log.d(TAG, "invoke search repository: $countries")
         return if(countries.isNotEmpty()){
