@@ -19,7 +19,7 @@ class CountriesRepository @Inject constructor(
         try{
         val response : List<CountryModel> = api.getCountries()
         return response.map{
-            Log.d(TAG, "getAllCountriesFromApi: $it")
+         //   Log.d(TAG, "getAllCountriesFromApi: $it")
             it.toDomain()
         }}
         catch(ex:Exception){
@@ -45,13 +45,12 @@ class CountriesRepository @Inject constructor(
         // Log.d(TAG, "getSearchedCountriesFromRoom: $response")
       //  return response.map { it.toDomain() }
             if(stingSearched.isNotEmpty()){
-
             val response : List<CountryEntity> = countryDao.getSearchedCountries(stingSearched)
-             Log.d(TAG, "getSearchedCountriesFromRoom: $stingSearched")
+            // Log.d(TAG, "getSearchedCountriesFromRoom: $stingSearched")
             return response.map { it.toDomain() }
          }else{
             val response : List<CountryEntity> = countryDao.getAllCountries()
-             Log.d(TAG, "getSearchedCountriesFromRoom: GetAllCountries")
+           //  Log.d(TAG, "getSearchedCountriesFromRoom: GetAllCountries")
             return response.map { it.toDomain() }
         }
     }

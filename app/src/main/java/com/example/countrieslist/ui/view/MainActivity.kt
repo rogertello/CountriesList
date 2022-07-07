@@ -69,8 +69,7 @@ private val countriesViewModel: CountriesViewModel by viewModels()
 
     override fun onQueryTextChange(p0: String?): Boolean {
         countriesViewModel.onSearch(p0!!)
-        Log.d("TAG", "getSearchedCountriesFromRoom: ${p0!!}")
-
+      //  Log.d("TAG", "getSearchedCountriesFromRoom: ${p0!!}")
         return true
     }
 }

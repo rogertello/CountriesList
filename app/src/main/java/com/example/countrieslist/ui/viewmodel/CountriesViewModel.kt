@@ -9,6 +9,7 @@ import com.example.countrieslist.domain.model.Country
 import com.example.countrieslist.domain.usecases.GetCountriesUseCase
 import com.example.countrieslist.domain.usecases.GetSearchedCountriesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ActivityContext
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -42,6 +43,8 @@ class CountriesViewModel @Inject constructor(
                 //Log.d(TAG, "onCreate countriesModel: ${countriesModel.value}")
             } else {
                 Log.d(TAG, "onCreate: null result")
+                //Toast.makeText(, "", Toast.LENGTH_SHORT)
+                countriesModel.postValue(emptyList())
             }
         }
     }
@@ -62,7 +65,7 @@ class CountriesViewModel @Inject constructor(
                 // Log.d(TAG, "onCreate result: ${result}")
                 //Log.d(TAG, "onCreate countriesModel: ${countriesModel.value}")
             } else {
-                Log.d(TAG, "GetSearchedCountriesFromRoom: null param")
+                //Log.d(TAG, "GetSearchedCountriesFromRoom: null param")
                 isLoading.postValue(false)
                 countriesModel.postValue(emptyList())
                 //Toast.makeText( coroutineContext, "", Toast.LENGTH_SHORT)
