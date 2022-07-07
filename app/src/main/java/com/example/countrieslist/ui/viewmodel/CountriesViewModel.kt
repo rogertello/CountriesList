@@ -62,10 +62,11 @@ class CountriesViewModel @Inject constructor(
                 // Log.d(TAG, "onCreate result: ${result}")
                 //Log.d(TAG, "onCreate countriesModel: ${countriesModel.value}")
             } else {
+                Log.d(TAG, "GetSearchedCountriesFromRoom: null param")
                 isLoading.postValue(false)
                 countriesModel.postValue(emptyList())
                 //Toast.makeText( coroutineContext, "", Toast.LENGTH_SHORT)
-                Log.d(TAG, "onCreate: null result")
+
             }
         }
     }
