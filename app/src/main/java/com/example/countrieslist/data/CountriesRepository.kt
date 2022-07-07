@@ -42,7 +42,16 @@ class CountriesRepository @Inject constructor(
 
     suspend fun getSearchedCountriesFromRoom(stingSearched:String):List<Country>{
         val response : List<CountryEntity> = countryDao.getSearchedCountries(stingSearched)
-       // Log.d(TAG, "getSearchedCountriesFromRoom: $response")
+        // Log.d(TAG, "getSearchedCountriesFromRoom: $response")
         return response.map { it.toDomain() }
+    //        if(stingSearched.isNotEmpty()){
+//            val response : List<CountryEntity> = countryDao.getSearchedCountries(stingSearched)
+//            // Log.d(TAG, "getSearchedCountriesFromRoom: $response")
+//            return response.map { it.toDomain() }
+//         }else{
+//            val response : List<CountryEntity> = countryDao.getAllCountries()
+//            // Log.d(TAG, "getSearchedCountriesFromRoom: $response")
+//            return response.map { it.toDomain() }
+//        }
     }
 }
