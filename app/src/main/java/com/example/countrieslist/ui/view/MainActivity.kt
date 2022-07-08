@@ -2,11 +2,13 @@ package com.example.countrieslist.ui.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import com.example.countrieslist.databinding.ActivityMainBinding
+import com.example.countrieslist.domain.model.UIState
 import com.example.countrieslist.ui.view.adapters.CountriesAdapter
 import com.example.countrieslist.ui.viewmodel.CountriesViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,13 +25,15 @@ private val countriesViewModel: CountriesViewModel by viewModels()
         setContentView(binding.root)
         binding.svCountries.setOnQueryTextListener(this)
 
-        countriesViewModel.isLoading.observe(this, Observer{
-            binding.progress.isVisible =it
-        })
-
-        countriesViewModel.countriesModel.observe(this, Observer{
-            binding.rvCountries.adapter = CountriesAdapter(it)
-        })
+        countriesViewModel.countriesState.observe(this) {state->
+            when (state) {
+                is UIState.Response -> { binding.rvCountries.adapter = CountriesAdapter(state.data) }
+                is UIState.Error -> {
+                    Toast.makeText(this@MainActivity, state.errorMessage, Toast.LENGTH_SHORT).show()
+                }
+                is UIState.Loading -> { binding.progress.isVisible = state.isLoading }
+            }
+        }
 
         binding.swipeRefreshLayoutMain.setOnRefreshListener {
             countriesViewModel.onCreate()
