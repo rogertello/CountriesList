@@ -9,7 +9,6 @@ private const val TAG = "GetSearchedCountriesUse"
 class GetSearchedCountriesUseCase @Inject constructor(
     private val repository: CountriesRepository
 ){
-
     suspend operator fun invoke(stringRequired:String): List<Country> {
 
        var countries = repository.getSearchedCountriesFromRoom(stringRequired)

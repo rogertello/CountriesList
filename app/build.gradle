@@ -56,7 +56,7 @@ dependencies {
     testImplementation "androidx.arch.core:core-testing:2.1.0"
 
     // Fragment
-    implementation "androidx.fragment:fragment-ktx:1.4.1"
+   // implementation "androidx.fragment:fragment-ktx:1.4.1"
     // Activity
     implementation "androidx.activity:activity-ktx:1.4.0"
     // ViewModel

@@ -6,7 +6,6 @@ import com.example.countrieslist.domain.usecases.GetCountriesUseCase
 import com.example.countrieslist.domain.usecases.GetSearchedCountriesUseCase
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
-import io.mockk.every
 import io.mockk.impl.annotations.RelaxedMockK
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

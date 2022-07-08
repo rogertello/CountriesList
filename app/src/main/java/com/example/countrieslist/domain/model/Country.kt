@@ -12,7 +12,8 @@ data class Country (
     val flag:String
   )
 
-//extension functions for mapping
-
+/**
+ * Extension functions for mappings, Model and Entity to Interface object.
+ */
 fun CountryModel.toDomain()=Country(name, region, code, capital, flag)
 fun CountryEntity.toDomain()=Country(name, region, code, capital, flag)

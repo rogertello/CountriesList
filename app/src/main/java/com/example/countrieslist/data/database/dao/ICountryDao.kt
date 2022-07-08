@@ -18,15 +18,6 @@ interface ICountryDao {
     @Query("Delete from country_table")
     suspend fun deleteAllCountries()
 
-//    @Query("Select * from country_table WHERE " +
-//            "name LIKE '%' ||:stringRequired ||'%' " +
-//            "or code like '%'|| :stringRequired || '%' " +
-//            "or region like '%'|| :stringRequired || '%' " +
-//            "or capital like '%'|| :stringRequired || '%' " +
-//            "order by name"
-//
-//    )
-
     @Query("Select * from country_table where name LIKE '%' || :stringRequired ||'%'"
     + "or code like '%'|| :stringRequired || '%' "
     + "or region like '%'|| :stringRequired || '%' "
